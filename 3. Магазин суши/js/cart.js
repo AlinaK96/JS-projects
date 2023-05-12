@@ -6,14 +6,13 @@ window.addEventListener('click', function (event) {
 
         //находим родителя
         const card = event.target.closest('.card')
-        console.log(card);
 
         //сбор данных
         const productInfo = {
             id: card.dataset.id,
             imgSrc: card.querySelector('.product-img').getAttribute('src'),
             title: card.querySelector('.item-title').innerText,
-            amount: card.querySelector('[data-items-in-box]').innerText,
+            amount: card.querySelector('[data-counter]').innerText,
             weight: card.querySelector('.price__weight').innerText,
             price: card.querySelector('.price__currency').innerText,
         }
@@ -36,7 +35,7 @@ window.addEventListener('click', function (event) {
                     </div>
                     <div class="cart-item__desc">
                         <div class="cart-item__title">${productInfo.title}</div>
-                        <div class="cart-item__weight">${productInfo.amount} / ${productInfo.weight}</div>
+                        <div class="cart-item__weight">${productInfo.amount} шт. / ${productInfo.weight}</div>
 
                         <div class="cart-item__details">
 
@@ -62,6 +61,7 @@ window.addEventListener('click', function (event) {
         }
 
         card.querySelector('[data-counter]').innerText = '1'
-        card.querySelector('[data-items-in-box]').innerText = '1 шт.'
+
+        cartStatus()
     }
 })

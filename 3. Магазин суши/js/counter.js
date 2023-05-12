@@ -3,12 +3,10 @@
 window.addEventListener('click', function (event) {
 
     let counter
-    let amount
 
     if (event.target.dataset.action === 'plus' || event.target.dataset.action === 'minus'){
         const wrapper = event.target.closest('.counter-wrapper')
         const card = event.target.closest('.card')
-        amount = card.querySelector('[data-items-in-box]')
         counter = wrapper.querySelector('[data-counter]')
     }
 
@@ -16,13 +14,18 @@ window.addEventListener('click', function (event) {
     if (event.target.dataset.action === 'plus') {
         if (counter.innerText < 20) {
             counter.innerText = ++counter.innerText
-            amount.innerText = counter.innerText + ' шт.'
         }
     }
 
     if (event.target.dataset.action === 'minus'){
-        if (counter.innerText > 1)
+
+        if (counter.innerText > 1){
             counter.innerText = --counter.innerText
-            amount.innerText = counter.innerText + ' шт.'
+        } else if (event.target.closest('.cart-wrapper') && parseInt(counter.innerText) === 1) {
+            event.target.closest('.cart-item').remove()
+
+            cartStatus()
+        }
+
     }
 }) 
