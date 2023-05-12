@@ -25,7 +25,14 @@ window.addEventListener('click', function (event) {
             event.target.closest('.cart-item').remove()
 
             cartStatus()
-        }
 
+            priceCalculation()
+        }
     }
+
+    
+        // пересчёт стоимости при изменении количества товара внутри корзины
+        if (event.target.hasAttribute('data-action') && event.target.closest('.cart-wrapper')) {
+            priceCalculation()
+        }
 }) 

@@ -63,5 +63,8 @@ window.addEventListener('click', function (event) {
         card.querySelector('[data-counter]').innerText = '1'
 
         cartStatus()
+
+        //пересчёт стоимости при добавлении нового товара
+        priceCalculation()
     }
 })
